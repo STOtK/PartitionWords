@@ -1,7 +1,9 @@
 import com.stotk.utils.ReadFiles;
+import com.stotk.partition.WordsPartition;
 
-import java.io.*;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -9,6 +11,10 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         String list = ReadFiles.readAllFiles("document/prose.txt");
-        System.out.println(list);
+        Map<String, Integer> wordCountMap = new HashMap<String, Integer>();
+        WordsPartition.chineseWordsPartition(wordCountMap, list);
+        for (Map.Entry<String, Integer> item : wordCountMap.entrySet()) {
+            System.out.println("key:" + item.getKey() + " " + "value:" + item.getValue());
+        }
     }
 }

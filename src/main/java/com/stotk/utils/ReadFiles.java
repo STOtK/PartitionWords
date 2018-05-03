@@ -15,7 +15,6 @@ public class ReadFiles {
      * 若数据是行级别的，可用这种方式来读取数据，字符流操作
      *
      * @param filename
-     * @param charset
      * @return
      */
     public static List<String> readLineFiles(String filename) {
@@ -74,7 +73,6 @@ public class ReadFiles {
      * 读出整个文件的数据，字符流操作
      *
      * @param file
-     * @param encoding
      * @return
      */
     public static String readAllFiles(String file) {
