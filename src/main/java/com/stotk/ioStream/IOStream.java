@@ -84,12 +84,10 @@ public class IOStream {
         }
     }
 
-
     /**
-     * byte转成char操作
      * 缓冲区操作：简单高效，减少开销
      */
-    public static void InputStreamReaderExample() {
+    public static void BufferedReaderExample() {
         FileReader reader = null;
         FileWriter writer = null;
         String line = null;
@@ -122,6 +120,45 @@ public class IOStream {
             if (writer != null) {
                 try {
                     writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    /**
+     * byte转换成char
+     * InputStreamReader & OutputStreamWriter 很关键；
+     */
+    public static void ByteTransferCharExample() {
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        try {
+            //BufferedX缓冲流包装，使得流处理更加快速
+            br = new BufferedReader(new InputStreamReader(new FileInputStream("document/prose.txt")));
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("document/copy.txt")));
+            String s;
+            while ((s = br.readLine()) != null) {
+                System.out.println(s);
+                bw.write(s);
+                bw.write("\n");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != bw) {
+                try {
+                    bw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (null != br) {
+                try {
+                    br.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
